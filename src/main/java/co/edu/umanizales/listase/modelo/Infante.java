@@ -23,6 +23,11 @@ public class Infante implements Serializable{
         this.identificador = identificador;
     }
 
+    public Infante(String nombre) {
+        this.nombre = nombre;
+    }
+    
+
     public Infante() {
     }
 

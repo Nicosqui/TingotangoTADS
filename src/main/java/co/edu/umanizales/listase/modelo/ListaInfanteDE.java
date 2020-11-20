@@ -193,6 +193,32 @@ public class ListaInfanteDE {
         }
     }
 
+    //Eliminar NOdo
+    public void eliminarNodo(String nombre) throws InfanteExcepcion {
+        if (cabeza != null) {
+            if (cabeza.getSiguiente() == cabeza) {
+                if (cabeza.getDato().getNombre().equals(nombre)) {
+                    cabeza = null;
+                    return;
+                }
+            } else {
+                NodoInfanteDE temp = cabeza;
+                do {
+                    if (temp.getDato().getNombre().equals(nombre)) {
+                        //estamos parados en el que hay que eliminar
+                        temp.getAnterior().setSiguiente(temp.getSiguiente());
+                        temp.getSiguiente().setAnterior(temp.getAnterior());
+                        return;
+                    }
+                    temp = temp.getSiguiente();
+                } while (temp.getSiguiente() != null);
+            }
+            throw new InfanteExcepcion(("El Jugador no se encuentra en la lista"));
+        } else {
+            throw new InfanteExcepcion(("No existen jugadors en la lista"));
+        }
+    }
+
     public void eliminarInfante(short codigo) throws InfanteExcepcion {
         if (cabeza != null) {
             if (cabeza.getDato().getIdentificador() == codigo) {
